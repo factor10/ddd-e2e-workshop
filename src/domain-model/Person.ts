@@ -18,10 +18,11 @@ export class Person {
     return deepEqual(this, other);
   }
 
-  asJsonFriendly(): any {
+  toJSON(): any {
     return {
       firstName: this.firstName,
-      lastName: this.lastName
+      lastName: this.lastName,
+      fullName: this.fullName
     };
   }
 }

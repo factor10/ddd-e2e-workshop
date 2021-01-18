@@ -27,11 +27,11 @@ export class Day {
     this._registrations.push(registration);
   }
 
-  asJsonFriendly(): any {
+  toJSON(): any {
     return {
-      consultant: this.consultant.asJsonFriendly(),
+      consultant: this.consultant.toJSON(),
       date: this.date,
-      registrations: this._registrations.map(r => r.asJsonFriendly())
+      registrations: this._registrations.map(r => r.toJSON())
     };
   }
 
@@ -72,9 +72,9 @@ export class Registration {
     return this._projectSnapshot;
   }
 
-  asJsonFriendly(): any {
+  toJSON(): any {
     return {
-      duration: this._duration.asJsonFriendly(),
+      duration: this._duration.toJSON(),
       activity: this._activity
     };
   }

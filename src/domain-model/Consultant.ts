@@ -23,10 +23,10 @@ export class Consultant {
     return deepEqual(this, other);
   }
 
-  asJsonFriendly(): any {
+  toJSON(): any {
     return {
       id: this.id,
-      person: this.person.asJsonFriendly()
+      person: this.person.toJSON()
     };
   }
 

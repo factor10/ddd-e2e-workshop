@@ -24,7 +24,7 @@ export class Duration {
     return new Duration(minutes);
   }
 
-  asJsonFriendly(): any {
+  toJSON(): any {
     return {
       minutes: this._minutes
     };

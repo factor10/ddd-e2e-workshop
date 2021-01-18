@@ -1,4 +1,3 @@
-import { IUser } from "@entities/User";
 import BaseFileBasedRepository from "./BaseFileBasedRepository";
 import { Consultant, Day, IDayRepository } from "src/domain-model";
 import { isSameDate } from "src/shared/functions";
@@ -13,7 +12,7 @@ export class FileBasedDayRepository
       db.days = [];
     }
 
-    const dayAsJsonFriendly = day.asJsonFriendly();
+    const dayAsJsonFriendly = day.toJSON();
     for (let i = 0; i < db.days.length; i++) {
       const existingDay = Day.fromJsonObject(db.days[i]);
       if (
