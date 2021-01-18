@@ -38,4 +38,8 @@ export class ProjectSnapshot {
   public get name(): string {
     return this._name;
   }
+
+  toJSON() {
+    return { name: this._name };
+  }
 }

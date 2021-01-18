@@ -1,4 +1,4 @@
-import { Consultant, Duration, Project, ProjectSnapshot } from ".";
+import { Consultant, Customer, Duration, Project, ProjectSnapshot } from ".";
 
 export class Day {
   private _registrations: Array<Registration> = [];
@@ -75,14 +75,16 @@ export class Registration {
   toJSON(): any {
     return {
       duration: this._duration.toJSON(),
-      activity: this._activity
+      activity: this._activity,
+      projectSnapshot: this._projectSnapshot.toJSON()
     };
   }
 
   static fromJsonObject(registrationObject: any): Registration {
     return new Registration(
       Duration.fromJsonObject(registrationObject.duration),
-      registrationObject.activity
+      registrationObject.activity,
+      new Project(new Customer(""), registrationObject.projectSnapshot.name)
     );
   }
 }

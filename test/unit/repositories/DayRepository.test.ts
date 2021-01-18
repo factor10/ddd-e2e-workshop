@@ -46,6 +46,7 @@ describe("When_saving_days", () => {
     expect(day).not.toBeNull();
     expect(day?.date).toEqual(today);
     expect(day?.consultant).toEqual(consultantStina);
+    expect(day?.registrations[0].projectSnapshot.name).toBe("New app");
   });
 
   test("Then_the_second_day_can_be_reconstituted", async () => {
