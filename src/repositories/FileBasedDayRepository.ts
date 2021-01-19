@@ -1,4 +1,4 @@
-import BaseFileBasedRepository from "./BaseFileBasedRepository";
+import { BaseFileBasedRepository } from "./BaseFileBasedRepository";
 import { Consultant, Day, IDayRepository } from "src/domain-model";
 import { isSameDate } from "src/shared/functions";
 import moment from "moment";
@@ -49,5 +49,10 @@ export class FileBasedDayRepository
       .map(d => Day.fromJsonObject(d))
       .filter((d: Day) => moment(start).startOf("date").toDate() <= d.date)
       .filter((d: Day) => d.date <= moment(end).endOf("date").toDate());
+  }
+
+  async all(): Promise<Day[]> {
+    const db = await super.openDb();
+    return db.days.map(d => Day.fromJsonObject(d));
   }
 }

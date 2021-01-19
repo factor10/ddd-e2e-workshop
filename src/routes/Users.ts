@@ -1,26 +1,20 @@
 import StatusCodes from "http-status-codes";
+const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 import { Request, Response, Router } from "express";
 
-import UserDao from "@daos/User/UserDao.mock";
+import { FileBasedDayRepository } from "src/repositories";
+import { ConsultantAgent } from "src/anti-corruption-layer";
 import { paramMissingError, IRequest } from "@shared/constants";
+import { Consultant } from "src/domain-model";
 
 const router = Router();
-const userDao = new UserDao();
-const { BAD_REQUEST, CREATED, OK } = StatusCodes;
-
-/******************************************************************************
- *                      Get All Users - "GET /api/users/all"
- ******************************************************************************/
-
-router.get("/all", async (req: Request, res: Response) => {
-  const users = await userDao.getAll();
-  return res.status(OK).json({ users });
-});
+const dayRepository = new FileBasedDayRepository();
+const consultantAgent = new ConsultantAgent();
 
 /******************************************************************************
  *                       Add One - "POST /api/users/add"
  ******************************************************************************/
-
+/*
 router.post("/add", async (req: IRequest, res: Response) => {
   const { user } = req.body;
   if (!user) {
@@ -31,11 +25,12 @@ router.post("/add", async (req: IRequest, res: Response) => {
   await userDao.add(user);
   return res.status(CREATED).end();
 });
+*/
 
 /******************************************************************************
  *                       Update - "PUT /api/users/update"
  ******************************************************************************/
-
+/*
 router.put("/update", async (req: IRequest, res: Response) => {
   const { user } = req.body;
   if (!user) {
@@ -51,15 +46,12 @@ router.put("/update", async (req: IRequest, res: Response) => {
 /******************************************************************************
  *                    Delete - "DELETE /api/users/delete/:id"
  ******************************************************************************/
-
+/*
 router.delete("/delete/:id", async (req: IRequest, res: Response) => {
   const { id } = req.params;
   await userDao.delete(Number(id));
   return res.status(OK).end();
 });
-
-/******************************************************************************
- *                                     Export
- ******************************************************************************/
+*/
 
 export default router;

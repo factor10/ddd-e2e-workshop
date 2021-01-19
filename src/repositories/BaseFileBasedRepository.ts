@@ -5,8 +5,8 @@ interface IDatabase {
   days: Day[];
 }
 
-export default class BaseFileBasedRepository {
-  private static readonly dbFilePath = "src/daos/MockDb/MockDb.json";
+export class BaseFileBasedRepository {
+  private static readonly dbFilePath = "src/repositories/mock-db/MockDb.json";
 
   protected openDb(): Promise<IDatabase> {
     return jsonfile.readFile(

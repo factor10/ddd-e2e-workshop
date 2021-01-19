@@ -8,7 +8,7 @@ import {
   Project,
   Registration
 } from "src/domain-model";
-import BaseFileBasedRepository from "src/repositories/BaseFileBasedRepository";
+import { BaseFileBasedRepository } from "src/repositories/BaseFileBasedRepository";
 import { FileBasedDayRepository } from "src/repositories";
 import { isSameDate } from "src/shared/functions";
 
