@@ -8,8 +8,8 @@ import {
   Project,
   Registration
 } from "src/domain-model";
-import { BaseFileBasedRepository } from "src/repositories/BaseFileBasedRepository";
-import { FileBasedDayRepository } from "src/repositories";
+import { BaseFileBasedRepository } from "src/infrastructure/BaseFileBasedRepository";
+import { FileBasedDayRepository } from "src/infrastructure";
 import { isSameDate } from "src/shared/functions";
 
 describe("When_saving_days", () => {

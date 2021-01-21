@@ -9,4 +9,6 @@ export interface IDayRepository {
   ): Promise<Day | null>;
 
   between(start: Date, end: Date): Promise<Array<Day>>;
+
+  all(): Promise<Array<Day>>;
 }

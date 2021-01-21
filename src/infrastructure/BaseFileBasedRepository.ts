@@ -6,7 +6,7 @@ interface IDatabase {
 }
 
 export class BaseFileBasedRepository {
-  private static readonly dbFilePath = "src/repositories/mock-db/MockDb.json";
+  private static readonly dbFilePath = "src/infrastructure/mock-db/MockDb.json";
 
   protected openDb(): Promise<IDatabase> {
     return jsonfile.readFile(

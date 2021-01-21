@@ -9,10 +9,10 @@ function getAllConsultantsAndAddToUi() {
   httpGet("/api/consultants/all")
     .then(response => response.json())
     .then(response => {
-      var allDays = response.consultants;
+      var consultants = response.consultants;
       var allDaysElement = document.getElementById("select-day-consultant");
-      allDays.forEach(user => {
-        allDaysElement.innerHTML += getConsultantAsOptionElement(user);
+      consultants.forEach(consultant => {
+        allDaysElement.innerHTML += getConsultantAsOptionElement(consultant);
       });
     });
 }
@@ -21,22 +21,16 @@ function getConsultantAsOptionElement(consultant) {
   return `<option value="${consultant.id.value}">${consultant.person.fullName}</option>`;
 }
 
-/******************************************************************************
- *                          Fetch and display users
- ******************************************************************************/
-
-displayUsers();
-
-function displayUsers() {
+displayDays();
+function displayDays() {
   httpGet("/api/days/all")
     .then(response => response.json())
     .then(response => {
       var allDays = response.days;
       var allDaysElement = document.getElementById("all-days");
       allDaysElement.innerHTML = "";
-      // Append users to anchor
-      allDays.forEach(user => {
-        allDaysElement.innerHTML += getDayDisplayElement(user);
+      allDays.forEach(day => {
+        allDaysElement.innerHTML += getDayDisplayElement(day);
       });
     });
 }
@@ -46,7 +40,6 @@ function getDayDisplayElement(day) {
   day.registrations.forEach(registration => {
     registrationsHtml += getRegistrationDisplayElement(registration);
   });
-
   return `
     <div class="day">
         <dl>
@@ -67,10 +60,6 @@ function getRegistrationDisplayElement(registration) {
     </div>`;
 }
 
-/******************************************************************************
- *                        Add, Edit, and Delete Users
- ******************************************************************************/
-
 document.addEventListener(
   "click",
   function (event) {
@@ -78,14 +67,6 @@ document.addEventListener(
     var ele = event.target;
     if (ele.matches("#button-add-day")) {
       addDay();
-    } else if (ele.matches(".edit-user-btn")) {
-      showEditView(ele.parentNode.parentNode);
-    } else if (ele.matches(".cancel-edit-btn")) {
-      cancelEdit(ele.parentNode.parentNode);
-    } else if (ele.matches(".submit-edit-btn")) {
-      submitEdit(ele);
-    } else if (ele.matches(".delete-user-btn")) {
-      deleteUser(ele);
     }
   },
   false
@@ -101,45 +82,7 @@ function addDay() {
     }
   };
   httpPost("/api/days/add", data).then(() => {
-    displayUsers();
-  });
-}
-
-function showEditView(userEle) {
-  var normalView = userEle.getElementsByClassName("normal-view")[0];
-  var editView = userEle.getElementsByClassName("edit-view")[0];
-  normalView.style.display = "none";
-  editView.style.display = "block";
-}
-
-function cancelEdit(userEle) {
-  var normalView = userEle.getElementsByClassName("normal-view")[0];
-  var editView = userEle.getElementsByClassName("edit-view")[0];
-  normalView.style.display = "block";
-  editView.style.display = "none";
-}
-
-function submitEdit(ele) {
-  var userEle = ele.parentNode.parentNode;
-  var nameInput = userEle.getElementsByClassName("name-edit-input")[0];
-  var emailInput = userEle.getElementsByClassName("email-edit-input")[0];
-  var id = ele.getAttribute("data-user-id");
-  var data = {
-    user: {
-      name: nameInput.value,
-      email: emailInput.value,
-      id: id
-    }
-  };
-  httpPut("/api/users/update", data).then(() => {
-    displayUsers();
-  });
-}
-
-function deleteUser(ele) {
-  var id = ele.getAttribute("data-user-id");
-  httpDelete("/api/users/delete/" + id).then(() => {
-    displayUsers();
+    displayDays();
   });
 }
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import ConsultantsRouter from "./ConsultantsRouter";
 import DaysRouter from "./DaysRouter";
+import ConsultantsRouter from "./ConsultantsRouter";
 
 // Init router and path
 const router = Router();
