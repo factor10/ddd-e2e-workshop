@@ -12,4 +12,4 @@ or
 
 ## Serve it
 
-`npm run dev`
+`npm run serve`

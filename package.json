@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "dev": "nodemon",
+    "serve": "nodemon",
     "test": "jest",
     "test:watch": "jest --watch",
     "cypress": "cypress open"
