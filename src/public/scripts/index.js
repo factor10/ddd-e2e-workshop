@@ -44,7 +44,7 @@ function getDayDisplayElement(day) {
     <div class="day">
         <dl>
             <dt>Consultant</dt>
-            <dd>${day.consultant.person.fullName}</dd>
+            <dd cy="consultant-name">${day.consultant.person.fullName}</dd>
 
             <dt>Date</dt>
             <dd>${new Date(day.date).toDateString()}</dd>
