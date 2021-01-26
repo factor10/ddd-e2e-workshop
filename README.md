@@ -26,9 +26,9 @@ Alternatively, if you do not want to Git clone it you can choose to download the
 
 ### 0.3. Install dependencies
 
-Since we will be using Node.js you can install the dependencies with NPM or Yarn. If you do not know what any of these tools are you should go ahead using NPM.
+Since we will be using Node.js you can install the dependencies with npm. If you do not know what any of these tools are you should go ahead using npm.
 
-Open a terminal and change directory to the repo you just cloned. Then install dependencies with NPM:
+Open a terminal and change directory to the repo you just cloned. Then install dependencies with npm:
 
 ```console
 npm install
