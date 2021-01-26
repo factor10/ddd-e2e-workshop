@@ -58,21 +58,17 @@ npm run serve
 
 After it has been started you can see the app running on http://localhost:3000
 
-### 1.3. Serve the lab application for Cypress tests
+### 1.4. Run Cypress tests
 
 The Cypress tests will use a separate running instance of the application to be isolated from your manual testing:
 
-```console
-npm run serve:e2e
-```
-
-### 1.4. Run Cypress test headless
+Run them headless with
 
 ```console
 npm run cypress
 ```
 
-### 1.5. Run Cypress UI Test Runner
+or in Cypress UI Test Runner with
 
 ```console
 npm run cypress:open
