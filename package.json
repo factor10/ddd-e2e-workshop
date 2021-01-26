@@ -6,7 +6,8 @@
     "serve": "nodemon",
     "test": "jest",
     "test:watch": "jest --watch",
-    "cypress": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress": "cypress run"
   },
   "nodemonConfig": {
     "watch": [

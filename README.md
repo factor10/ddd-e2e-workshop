@@ -59,3 +59,15 @@ npm run serve
 ```
 
 After it has been started you can see the app running on http://localhost:3000
+
+## Run Cypress test headless
+
+```console
+npm run cypress
+```
+
+## Run Cypress UI Test Runner
+
+```console
+npm run cypress:open
+```
