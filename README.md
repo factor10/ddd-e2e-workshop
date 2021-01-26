@@ -2,11 +2,11 @@
 
 This repo is the base for a hands on lab at [DDD Europe 2021](https://dddeurope.com/2021/).
 
-In the lab we will be using cypress for writing UI-tests for a super "raw" time reporting application written in typescript.
+In the lab we will be using Cypress for writing UI-tests for a super "raw" time reporting application written in typescript.
 
 ## 0. What you need to do _before_ the lab
 
-You need to install node and cypress (which will bring some dependencies as well). You find instructions below.
+You need to install Node.js and Cypress (which will bring some dependencies as well). You find instructions below.
 
 If you are having any trouble with this README before the lab session, feel free to contact [Andreas Cederström on Twitter](https://twitter.com/a_cederstrom) :)
 
@@ -30,7 +30,7 @@ Alternatively, if you do not want to `git clone` it you can choose to download t
 
 ### 0.3. Install dependencies
 
-Since we will be using Node.js you can install the dependencies with npm. If you do not know what any of these tools are you should go ahead using npm.
+Since we will be using Node.js you can install the dependencies with npm.
 
 Change directory to the repo you just cloned. Then install dependencies with npm:
 
@@ -42,7 +42,7 @@ npm install
 
 ### 1.1. Unit tests
 
-To run the unit tests you can execute the following in a terminal
+To run the unit tests you can execute the following in a terminal:
 
 ```console
 npm run test
@@ -50,7 +50,7 @@ npm run test
 
 ### 1.2. Serve the lab application
 
-You can start the application from terminal with
+You can start the application from terminal with:
 
 ```console
 npm run serve
@@ -59,6 +59,8 @@ npm run serve
 After it has been started you can see the app running on http://localhost:3000
 
 ### 1.3. Serve the lab application for Cypress tests
+
+The Cypress tests will use a separate running instance of the application to be isolated from your manual testing:
 
 ```console
 npm run serve:e2e
@@ -75,3 +77,5 @@ npm run cypress
 ```console
 npm run cypress:open
 ```
+
+Now you are very well prepared for the lab! Welcome!!! :)
