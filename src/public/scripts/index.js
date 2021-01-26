@@ -48,16 +48,20 @@ function getDayDisplayElement(day) {
 
             <dt>Date</dt>
             <dd>${new Date(day.date).toDateString()}</dd>
+
+            <dt>Registrations</dt>
+            <dd><ul>${registrationsHtml}</ul></dd>
         </dl>
-        <div>Registrations: ${registrationsHtml}</div>
     </div>`;
 }
 
 function getRegistrationDisplayElement(registration) {
   return `
-    <div class="registration">
+    <li class="registration">
         <div>Project: ${registration.projectSnapshot.name}</div>
-    </div>`;
+        <div>Activity: ${registration.activity}</div>
+        <div>Duration: ${registration.duration.minutes} minutes</div>
+    </li>`;
 }
 
 document.addEventListener(

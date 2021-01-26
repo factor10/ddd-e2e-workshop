@@ -5,6 +5,10 @@
   padding-top: 0;
 }
 
+.registration {
+  padding-bottom: 0.5rem;
+}
+
 dt {
   font-weight: bold;
 }
