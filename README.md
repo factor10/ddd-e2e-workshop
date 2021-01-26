@@ -60,7 +60,7 @@ After it has been started you can see the app running on http://localhost:3000
 
 ### 1.4. Run Cypress tests
 
-The Cypress tests will use a separate running instance of the application to be isolated from your manual testing:
+The Cypress tests will use a separate running instance of the application to be isolated from your manual testing. This separate instance is launched automatically when you start Cypress with one of the following commands.
 
 Run them headless with
 
