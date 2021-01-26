@@ -1,10 +1,14 @@
 # DDD ❤️ end-to-end UI-tests
 
-> This repo is the base for a hands on lab at [DDD Europe 2021](https://dddeurope.com/2021/).
+This repo is the base for a hands on lab at [DDD Europe 2021](https://dddeurope.com/2021/).
+
+In the lab we will be using cypress for writing UI-tests for a super "raw" time reporting application written in typescript.
 
 ## 0. What you need to do _before_ the lab
 
-> If you are having any trouble with this README before the lab session, feel free to contact [Andreas Cederström on Twitter](https://twitter.com/a_cederstrom) :)
+You need to install node and cypress (which will bring some dependencies as well). You find instructions below.
+
+If you are having any trouble with this README before the lab session, feel free to contact [Andreas Cederström on Twitter](https://twitter.com/a_cederstrom) :)
 
 ### 0.1. Install Node.js
 
@@ -16,27 +20,27 @@ Once installed you shall be able to start a terminal and execute the following:
 node --version
 ```
 
-it should produce a version number. E.g. `v14.15.4` for the current LTS.
+it should produce a version number. E.g. `v14.15.4` for the current LTS. We have tested for example with `v12.14.1` and it worked just fine as well.
 
 ### 0.2. Get the source code
 
-The best way to get the source code is to Git clone this repo.
+The best way to get the source code is to `git clone` this repo.
 
-Alternatively, if you do not want to Git clone it you can choose to download the repo as a ZIP file instead.
+Alternatively, if you do not want to `git clone` it you can choose to download the repo as a ZIP file instead.
 
 ### 0.3. Install dependencies
 
 Since we will be using Node.js you can install the dependencies with npm. If you do not know what any of these tools are you should go ahead using npm.
 
-Open a terminal and change directory to the repo you just cloned. Then install dependencies with npm:
+Change directory to the repo you just cloned. Then install dependencies with npm:
 
 ```console
 npm install
 ```
 
-## Extra
+## 1. Check that it works
 
-### Unit test
+### 1.1. Unit tests
 
 To run the unit tests you can execute the following in a terminal
 
@@ -44,13 +48,7 @@ To run the unit tests you can execute the following in a terminal
 npm run test
 ```
 
-or
-
-```console
-npm run test:watch
-```
-
-## Serve the lab application
+### 1.2. Serve the lab application
 
 You can start the application from terminal with
 
@@ -60,13 +58,19 @@ npm run serve
 
 After it has been started you can see the app running on http://localhost:3000
 
-## Run Cypress test headless
+### 1.3. Serve the lab application for Cypress tests
+
+```console
+npm run serve:e2e
+```
+
+### 1.4. Run Cypress test headless
 
 ```console
 npm run cypress
 ```
 
-## Run Cypress UI Test Runner
+### 1.5. Run Cypress UI Test Runner
 
 ```console
 npm run cypress:open
