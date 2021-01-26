@@ -5,7 +5,7 @@ context("Assertions", () => {
     // TODO: fixture
     before(() => {
       cy.fixture("one-day-one-registration").then(testData => {
-        cy.writeFile("src/infrastructure/mock-db/MockDb.json", testData);
+        cy.writeFile("src/infrastructure/_storage/e2e-storage.json", testData);
       });
     });
 
