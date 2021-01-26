@@ -41,7 +41,7 @@ function getDayDisplayElement(day) {
     registrationsHtml += getRegistrationDisplayElement(registration);
   });
   return `
-    <div class="day">
+    <div class="day" cy="day">
         <dl>
             <dt>Consultant</dt>
             <dd cy="consultant-name">${day.consultant.person.fullName}</dd>
@@ -57,10 +57,12 @@ function getDayDisplayElement(day) {
 
 function getRegistrationDisplayElement(registration) {
   return `
-    <li class="registration">
-        <div>Project: ${registration.projectSnapshot.name}</div>
-        <div>Activity: ${registration.activity}</div>
-        <div>Duration: ${registration.duration.minutes} minutes</div>
+    <li class="registration" cy="registration">
+      <span cy="activity-name">${registration.activity}</span>
+      @
+      <span cy="project-name">${registration.projectSnapshot.name}</span>
+      <br />
+      <span cy="duration">${registration.duration.minutes} minutes</span>
     </li>`;
 }
 

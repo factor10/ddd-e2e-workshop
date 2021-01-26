@@ -15,7 +15,7 @@
       "registrations": [
         {
           "duration": {
-            "minutes": 120
+            "minutes": 200
           },
           "activity": "Programming",
           "projectSnapshot": {
