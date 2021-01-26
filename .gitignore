@@ -1,2 +1,4 @@
 node_modules
-**/MockDb.json
+**/_storage
+cypress/screenshots
+cypress/videos

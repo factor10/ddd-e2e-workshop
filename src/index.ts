@@ -1,3 +1,4 @@
+import "./env-config";
 import app from "./Server";
 import logger from "src/shared/Logger";
 

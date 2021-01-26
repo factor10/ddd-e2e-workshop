@@ -4,10 +4,11 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "serve": "nodemon",
+    "serve:e2e": "nodemon --env e2e || true",
     "test": "jest",
     "test:watch": "jest --watch",
-    "cypress:open": "cypress open",
-    "cypress": "cypress run"
+    "cypress:open": "start-server-and-test serve:e2e http://localhost:3001 'cypress open'",
+    "cypress": "start-server-and-test serve:e2e http://localhost:3001 'cypress run'"
   },
   "nodemonConfig": {
     "watch": [
@@ -64,7 +65,10 @@
       "^src/(.*)$": "<rootDir>/src/$1"
     },
     "modulePathIgnorePatterns": [
-      "src/infrastructure/mock-db"
+      "src/infrastructure/_storage"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/unit/env-setup.ts"
     ]
   },
   "dependencies": {
@@ -103,6 +107,7 @@
     "jasmine": "^3.6.3",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
+    "start-server-and-test": "^1.11.7",
     "supertest": "^6.0.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",

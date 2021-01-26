@@ -8,7 +8,6 @@ import {
   Project,
   Registration
 } from "src/domain-model";
-import { BaseFileBasedRepository } from "src/infrastructure/BaseFileBasedRepository";
 import { FileBasedDayRepository } from "src/infrastructure";
 import { isSameDate } from "src/shared/functions";
 
@@ -20,7 +19,7 @@ describe("When_saving_days", () => {
   );
 
   beforeAll(async () => {
-    BaseFileBasedRepository.clearDatabase();
+    dayRepository.clearDatabase();
 
     const firstDay = new Day(consultantStina, today);
     firstDay.addRegistration(

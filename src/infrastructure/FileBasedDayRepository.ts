@@ -53,6 +53,7 @@ export class FileBasedDayRepository
 
   async all(): Promise<Day[]> {
     const db = await super.openDb();
+    if (!db.days) return [];
     return db.days.map(d => Day.fromJsonObject(d));
   }
 }
