@@ -1,6 +1,6 @@
 setCurrentDateInDatePicker();
 function setCurrentDateInDatePicker() {
-  var dateControl = document.getElementById("input-day-date");
+  var dateControl = document.getElementById("input-date");
   dateControl.value = new Date().toISOString().substring(0, 10);
 }
 
@@ -10,7 +10,7 @@ function getAllConsultantsAndAddToUi() {
     .then(response => response.json())
     .then(response => {
       var consultants = response.consultants;
-      var allDaysElement = document.getElementById("select-day-consultant");
+      var allDaysElement = document.getElementById("select-consultant");
       consultants.forEach(consultant => {
         allDaysElement.innerHTML += getConsultantAsOptionElement(consultant);
       });
@@ -21,8 +21,8 @@ function getConsultantAsOptionElement(consultant) {
   return `<option value="${consultant.id.value}">${consultant.person.fullName}</option>`;
 }
 
-displayDays();
-function displayDays() {
+displayRegistrations();
+function displayRegistrations() {
   httpGet("/api/days/all")
     .then(response => response.json())
     .then(response => {
@@ -71,24 +71,30 @@ document.addEventListener(
   function (event) {
     event.preventDefault();
     var ele = event.target;
-    if (ele.matches("#button-add-day")) {
-      addDay();
+    if (ele.matches("#button-add-registration")) {
+      addRegistration();
     }
   },
   false
 );
 
-function addDay() {
-  var dateInput = document.getElementById("input-day-date");
-  var consultantSelect = document.getElementById("select-day-consultant");
+function addRegistration() {
+  var consultantId = document.getElementById("select-consultant").value;
+  var date = document.getElementById("input-date").value;
+  var project = document.getElementById("input-project").value;
+  var activity = document.getElementById("input-activity").value;
+  var duration = document.getElementById("input-duration").value;
   var data = {
-    day: {
-      date: dateInput.value,
-      consultantId: consultantSelect.value
+    registration: {
+      consultantId,
+      date,
+      project,
+      activity,
+      duration
     }
   };
-  httpPost("/api/days/add", data).then(() => {
-    displayDays();
+  httpPost("/api/registraion", data).then(() => {
+    displayRegistrations();
   });
 }
 

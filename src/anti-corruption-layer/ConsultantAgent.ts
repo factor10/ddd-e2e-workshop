@@ -34,8 +34,8 @@ export class ConsultantAgent implements IConsultantAgent {
     return this.consultantMap.get(fullName);
   }
 
-  theOneWithId(id: string): Consultant | undefined {
-    return this.all().find((c: Consultant) => c.id.equals(Guid.parse(id)));
+  theOneWithId(id: Guid): Consultant | undefined {
+    return this.all().find((c: Consultant) => c.id.equals(id));
   }
 
   all(): Consultant[] {
