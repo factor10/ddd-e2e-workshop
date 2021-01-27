@@ -37,8 +37,10 @@ function displayRegistrations() {
 
 function getDayDisplayElement(day) {
   var registrationsHtml = "";
+  var totalDurationMinutes = 0;
   day.registrations.forEach(registration => {
     registrationsHtml += getRegistrationDisplayElement(registration);
+    totalDurationMinutes += registration.duration.minutes;
   });
   return `
     <div class="day" cy="day">
@@ -48,6 +50,9 @@ function getDayDisplayElement(day) {
 
             <dt>Date</dt>
             <dd>${new Date(day.date).toDateString()}</dd>
+
+            <dt>Total duration</dt>
+            <dd cy="total-duration">${totalDurationMinutes} minutes</dd>
 
             <dt>Registrations</dt>
             <dd><ul>${registrationsHtml}</ul></dd>
@@ -79,6 +84,7 @@ document.addEventListener(
 );
 
 function addRegistration() {
+  hideError();
   var consultantId = document.getElementById("select-consultant").value;
   var date = document.getElementById("input-date").value;
   var project = document.getElementById("input-project").value;
@@ -93,9 +99,29 @@ function addRegistration() {
       duration
     }
   };
-  httpPost("/api/registraion", data).then(() => {
-    displayRegistrations();
-  });
+  httpPost("/api/registraion", data)
+    .then(response => {
+      if (response.status === 201) {
+        displayRegistrations();
+        return;
+      }
+      return response.json();
+    })
+    .then(json => {
+      if (json && json.error) {
+        showError(json.error);
+      }
+    });
+}
+
+var warningElement = document.getElementById("warning");
+function showError(message) {
+  warningElement.innerText = message;
+  warningElement.style.display = "";
+}
+function hideError() {
+  warningElement.innerText = "";
+  warningElement.style.display = "none";
 }
 
 function httpGet(path) {

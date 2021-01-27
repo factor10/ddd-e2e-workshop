@@ -33,5 +33,9 @@ context("Given a registration for consultant in storage", () => {
     it("Then should show duration for the registration", () => {
       cy.get("[cy=duration]").first().should("have.text", "200 minutes");
     });
+
+    it("Then total registered time for the day should be 200 min", () => {
+      cy.get("[cy=total-duration]").should("have.text", "200 minutes");
+    });
   });
 });

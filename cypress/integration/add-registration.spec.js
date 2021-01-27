@@ -28,10 +28,6 @@ context(
         cy.get("[cy=project-name]").first().should("have.text", "New app");
         cy.get("[cy=activity-name]").first().should("have.text", "Programming");
       });
-
-      xit("Then total registered time for the day shall be 200 min", () => {
-        cy.get("[cy=totalt-time]").should("have.text", "200 min");
-      });
     });
   }
 );
