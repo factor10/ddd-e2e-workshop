@@ -1,4 +1,5 @@
 {
   "baseUrl": "http://localhost:3001",
-  "ignoreTestFiles": "**/cypress/integration/examples/**"
+  "ignoreTestFiles": "**/cypress/integration/examples/**",
+  "defaultCommandTimeout": 1000
 }

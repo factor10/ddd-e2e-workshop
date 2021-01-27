@@ -5,6 +5,5 @@ import { FileBasedDayRepository } from "src/infrastructure";
 const dayController = new DayController(new FileBasedDayRepository());
 const router = Router();
 router.get("/all", dayController.getAllDays.bind(dayController));
-router.post("/add", dayController.addDay.bind(dayController));
 
 export default router;

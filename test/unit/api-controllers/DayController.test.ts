@@ -42,35 +42,4 @@ describe("Given a DayController", () => {
       });
     });
   });
-
-  describe("When adding a day to empty repository", () => {
-    beforeEach(async () => {
-      const req = getMockReq();
-      response = getMockRes().res;
-      req.body = {
-        day: {
-          consultantId: "11edb330-6b82-bc0a-a509-00340fd7125f",
-          date: "1985-11-08"
-        }
-      };
-
-      await dayController.addDay(req, response);
-    });
-
-    test("Then repos has one new day", () => {
-      expect(fakeDaysRepo.days.length).toBe(1);
-    });
-
-    test("Then day in repository has the given consultant ID", () => {
-      expect(fakeDaysRepo.days[0].consultant.id).toEqual(
-        Guid.parse("11edb330-6b82-bc0a-a509-00340fd7125f")
-      );
-    });
-
-    test("Then day in repository has the given date", () => {
-      expect(fakeDaysRepo.days[0].date.toISOString().substr(0, 10)).toEqual(
-        "1985-11-08"
-      );
-    });
-  });
 });

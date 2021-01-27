@@ -8,17 +8,31 @@
   </head>
   <body>
     <div class="add-day">
-      <h2>Add a day for consultant</h2>
+      <h2>Register time</h2>
       <div>
-        <input type="date" id="input-day-date" value="" />
-      </div>
-      <div>
-        <select id="select-day-consultant">
+        <label for="select-consultant">Select consultant</label>
+        <select id="select-consultant" cy="consultant">
           <option value="" disabled selected>Select a consultant</option>
         </select>
       </div>
       <div>
-        <button id="button-add-day">Add</button>
+        <label for="input-date">Date</label>
+        <input type="date" id="input-date" cy="date" />
+      </div>
+      <div>
+        <label for="input-project">Project</label>
+        <input id="input-project" cy="project" />
+      </div>
+      <div>
+        <label for="input-activity">Activity</label>
+        <input id="input-activity" cy="activity" />
+      </div>
+      <div>
+        <label for="input-duration">Duration</label>
+        <input id="input-duration" cy="duration" />
+      </div>
+      <div>
+        <button id="button-add-registration">Add</button>
       </div>
     </div>
 
