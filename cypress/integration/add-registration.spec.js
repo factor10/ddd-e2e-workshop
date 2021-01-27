@@ -8,15 +8,15 @@ context(
         cy.writeFile("src/infrastructure/_storage/e2e-storage.json", testData);
       });
       cy.visit("/");
-      cy.get("select[cy=consultant]").select("Stina Johansson");
+      cy.get("[cy=select-consultant]").select("Stina Johansson");
     });
 
     describe("When registering 200 min spent on Programming @ New app", () => {
       before(() => {
-        cy.get("input[cy=date]").type("2021-01-25");
-        cy.get("input[cy=project]").type("New app");
-        cy.get("input[cy=activity]").type("Programming");
-        cy.get("input[cy=duration]").type("200 min");
+        cy.get("[cy=input-date]").type("2021-01-25");
+        cy.get("[cy=input-project]").type("New app");
+        cy.get("[cy=input-activity]").type("Programming");
+        cy.get("[cy=input-duration]").type("200 min");
         cy.contains("button", "Add").click();
       });
 
