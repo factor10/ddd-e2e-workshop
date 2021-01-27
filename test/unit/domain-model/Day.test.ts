@@ -1,5 +1,11 @@
 import { Guid } from "guid-typescript";
-import { Consultant, Day, Duration, Registration } from "src/domain-model";
+import {
+  Consultant,
+  Day,
+  DayState,
+  Duration,
+  Registration
+} from "src/domain-model";
 
 describe("When creating a day", () => {
   let id: Guid;
@@ -37,5 +43,9 @@ describe("When creating a day", () => {
 
   test("Then the total numbers of hours on that day will be 5", () => {
     expect(day.hours).toBe(5);
+  });
+
+  test("Then it should be NotApproved", () => {
+    expect(day.state).toBe(DayState.NotApproved);
   });
 });

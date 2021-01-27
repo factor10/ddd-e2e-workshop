@@ -1,8 +1,13 @@
 import { Consultant, Registration } from ".";
 
+export enum DayState {
+  NotApproved
+}
+
 export class Day {
   private _registrations: Array<Registration> = [];
   private _consultant: Consultant;
+  state = DayState.NotApproved;
 
   constructor(consultant: Consultant, public date: Date) {
     this._consultant = consultant;
