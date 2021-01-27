@@ -7,3 +7,4 @@ export * from "./ICustomerAgent";
 export * from "./IDayRepository";
 export * from "./Person";
 export * from "./Project";
+export * from "./Registration";

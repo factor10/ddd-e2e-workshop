@@ -11,7 +11,6 @@ import {
 } from "src/domain-model";
 import { paramMissingError } from "src/shared/constants";
 import { Guid } from "guid-typescript";
-import logger from "src/shared/Logger";
 
 interface IRegistrationRequest extends Request {
   body: {
