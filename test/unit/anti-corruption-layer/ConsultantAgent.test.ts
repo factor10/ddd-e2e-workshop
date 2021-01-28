@@ -2,15 +2,15 @@ import { Guid } from "guid-typescript";
 import { ConsultantAgent } from "src/anti-corruption-layer";
 import { Consultant } from "src/domain-model";
 
-describe("When_asking_for_a_consultant_from_the_domainservice", () => {
+describe("When asking for a consultant from the domainservice", () => {
   const consultantAgent = new ConsultantAgent();
 
-  test("Then_the_consultant_can_be_reconstituted", () => {
+  test("Then the consultant can be reconstituted", () => {
     const consultant = consultantAgent.theOneWithFullName("Stina Johansson");
     expect(consultant?.person.fullName).toBe("Stina Johansson");
   });
 
-  test("Then_consultant_can_not_be_found_for_non_existing_name", () => {
+  test("Then consultant can not be found for non existing name", () => {
     const consultant = consultantAgent.theOneWithFullName("X Y");
     expect(consultant).toBeUndefined();
   });
@@ -32,7 +32,7 @@ describe("When_asking_for_a_consultant_from_the_domainservice", () => {
     expect(consultant?.person.fullName).toBe("Stina Johansson");
   });
 
-  test("Then_consultant_can_not_be_found_for_non_existing_name", () => {
+  test("Then consultant can not be found for non existing name", () => {
     const consultant = consultantAgent.theOneWithId(
       Guid.parse("00000000-0000-0000-0000-000000000000")
     );

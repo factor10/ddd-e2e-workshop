@@ -12,11 +12,11 @@ describe("When creating a person", () => {
     expect(person.lastName).toEqual("Nilsson");
   });
 
-  test("Then_the_full_name_is_set", () => {
+  test("Then the full name is set", () => {
     expect(person.fullName).toEqual("Jimmy Nilsson");
   });
 
-  test("Then_the_object_is_equal_to_one_created_with_fullname", () => {
+  test("Then the object is equal to one created with fullname", () => {
     const anotherPerson = Person.CreateFromFullName("Jimmy Nilsson");
     expect(person).toEqual(anotherPerson);
   });
@@ -26,7 +26,7 @@ describe("When creating a person", () => {
     [false, "???", "Nilsson"],
     [false, "Jimmy", "???"]
   ])(
-    "Then_it_is_equal_to_another_object_or_not_depending_on_the_values",
+    "Then it is equal to another object or not depending on the values",
     (expected: boolean, firstName: string, lastName: string) => {
       const anotherPerson = new Person(firstName, lastName);
       expect(person.equal(anotherPerson)).toBe(expected);

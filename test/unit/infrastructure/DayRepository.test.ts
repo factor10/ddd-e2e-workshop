@@ -12,7 +12,7 @@ import {
 import { FileBasedDayRepository } from "src/infrastructure";
 import { isSameDate } from "src/shared/functions";
 
-describe("When_saving_days", () => {
+describe("When saving days", () => {
   const dayRepository = new FileBasedDayRepository();
   const today = new Date();
   const consultantStina = <Consultant>(
@@ -38,7 +38,7 @@ describe("When_saving_days", () => {
     await dayRepository.save(secondDay);
   });
 
-  test("Then_the_first_day_can_be_reconstituted", async () => {
+  test("Then the first day can be reconstituted", async () => {
     const day = await dayRepository.certainDayForConsultant(
       consultantStina,
       today
@@ -50,7 +50,7 @@ describe("When_saving_days", () => {
     expect(day?.state).toBe(DayState.Closed);
   });
 
-  test("Then_the_second_day_can_be_reconstituted", async () => {
+  test("Then the second day can be reconstituted", async () => {
     const fourDaysAhead = new Date();
     fourDaysAhead.setDate(fourDaysAhead.getDate() + 4);
     const day = await dayRepository.certainDayForConsultant(
@@ -64,7 +64,7 @@ describe("When_saving_days", () => {
     expect(day?.state).toBe(DayState.Open);
   });
 
-  test("Then_the_first_day_can_be_updated_and_reconstitued", async () => {
+  test("Then the first day can be updated and reconstitued", async () => {
     const day = <Day>(
       await dayRepository.certainDayForConsultant(consultantStina, today)
     );
@@ -84,7 +84,7 @@ describe("When_saving_days", () => {
     expect(updatedDay?.hours).toBe(3);
   });
 
-  test("Then_day_can_not_be_found_for_non_existing_consultant", async () => {
+  test("Then day can not be found for non existing consultant", async () => {
     const day = await dayRepository.certainDayForConsultant(
       new Consultant(Guid.create(), "Non", "Existing"),
       today
@@ -92,7 +92,7 @@ describe("When_saving_days", () => {
     expect(day).toBeNull();
   });
 
-  test("Then_day_can_not_be_found_for_non_existing_date", async () => {
+  test("Then day can not be found for non existing date", async () => {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     const day = await dayRepository.certainDayForConsultant(
@@ -102,7 +102,7 @@ describe("When_saving_days", () => {
     expect(day).toBeNull();
   });
 
-  test("Then_the_first_day_can_be_found_in_the_interval", async () => {
+  test("Then the first day can be found in the interval", async () => {
     const twoDaysAgo = new Date();
     twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
 
