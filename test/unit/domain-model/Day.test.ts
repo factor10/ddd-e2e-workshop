@@ -45,7 +45,7 @@ describe("When creating a day", () => {
     expect(day.hours).toBe(5);
   });
 
-  test("Then it should be NotApproved", () => {
-    expect(day.state).toBe(DayState.NotApproved);
+  test("Then it should be Open", () => {
+    expect(day.state).toBe(DayState.Open);
   });
 });

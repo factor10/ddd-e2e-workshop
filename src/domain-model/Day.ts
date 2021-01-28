@@ -1,9 +1,9 @@
 import { Consultant, Registration } from ".";
 
 export enum DayState {
-  NotApproved = 0,
-  ApprovedByConsultant = 1,
-  ApprovedByManager = 2
+  Open = 0,
+  Closed = 1,
+  Accepted = 2
 }
 
 export class Day {
@@ -14,7 +14,7 @@ export class Day {
   constructor(
     consultant: Consultant,
     public date: Date,
-    state = DayState.NotApproved
+    state = DayState.Open
   ) {
     this._consultant = consultant;
     this._state = state;

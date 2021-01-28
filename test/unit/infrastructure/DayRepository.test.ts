@@ -22,11 +22,7 @@ describe("When_saving_days", () => {
   beforeAll(async () => {
     dayRepository.clearDatabase();
 
-    const firstDay = new Day(
-      consultantStina,
-      today,
-      DayState.ApprovedByConsultant
-    );
+    const firstDay = new Day(consultantStina, today, DayState.Closed);
     firstDay.addRegistration(
       new Registration(
         new Duration(60),
@@ -51,7 +47,7 @@ describe("When_saving_days", () => {
     expect(day?.date).toEqual(today);
     expect(day?.consultant).toEqual(consultantStina);
     expect(day?.registrations[0].projectSnapshot.name).toBe("New app");
-    expect(day?.state).toBe(DayState.ApprovedByConsultant);
+    expect(day?.state).toBe(DayState.Closed);
   });
 
   test("Then_the_second_day_can_be_reconstituted", async () => {
@@ -65,7 +61,7 @@ describe("When_saving_days", () => {
     expect(isSameDate(<Date>day?.date, fourDaysAhead)).toBe(true);
     expect(day?.consultant).toEqual(consultantStina);
     expect(day?.registrations).toEqual([]);
-    expect(day?.state).toBe(DayState.NotApproved);
+    expect(day?.state).toBe(DayState.Open);
   });
 
   test("Then_the_first_day_can_be_updated_and_reconstitued", async () => {
