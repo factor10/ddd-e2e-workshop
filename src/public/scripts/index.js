@@ -99,7 +99,7 @@ function addRegistration() {
       duration
     }
   };
-  httpPost("/api/registraion", data)
+  httpPost("/api/registration", data)
     .then(response => {
       if (response.status === 201) {
         displayRegistrations();

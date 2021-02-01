@@ -9,7 +9,7 @@ const router = Router();
 // Add sub-routes
 router.use("/consultants", ConsultantsRouter);
 router.use("/days", DaysRouter);
-router.use("/registraion", RegistrationRouter);
+router.use("/registration", RegistrationRouter);
 
 // Export the base-router
 export default router;
