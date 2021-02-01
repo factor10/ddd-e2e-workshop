@@ -4,11 +4,12 @@ export class CustomerAgent implements ICustomerAgent {
   private customerMap: Map<string, Customer> = new Map<string, Customer>();
 
   constructor() {
-    const sonera = new Customer("Sonera");
-    this.customerMap.set(sonera.name, sonera);
+    this.createFakeCustomer("factor10");
+    this.createFakeCustomer("DDD Europe");
+  }
 
-    const finnair = new Customer("Finnair");
-    this.customerMap.set(finnair.name, finnair);
+  private createFakeCustomer(name: string) {
+    this.customerMap.set(name, new Customer(name));
   }
 
   theOneWithName(name: string): Customer | undefined {

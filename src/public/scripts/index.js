@@ -12,13 +12,9 @@ function getAllConsultantsAndAddToUi() {
       var consultants = response.consultants;
       var allDaysElement = document.getElementById("select-consultant");
       consultants.forEach(consultant => {
-        allDaysElement.innerHTML += getConsultantAsOptionElement(consultant);
+        allDaysElement.innerHTML += `<option value="${consultant.id.value}">${consultant.person.fullName}</option>`;
       });
     });
-}
-
-function getConsultantAsOptionElement(consultant) {
-  return `<option value="${consultant.id.value}">${consultant.person.fullName}</option>`;
 }
 
 displayRegistrations();
@@ -82,19 +78,29 @@ document.addEventListener(
   },
   false
 );
+document.addEventListener(
+  "change",
+  function (event) {
+    var ele = event.target;
+    if (ele.matches("#select-consultant")) {
+      updateProjectSelect();
+    }
+  },
+  false
+);
 
 function addRegistration() {
   hideError();
   var consultantId = document.getElementById("select-consultant").value;
   var date = document.getElementById("input-date").value;
-  var project = document.getElementById("input-project").value;
+  var projectName = document.getElementById("select-project").value;
   var activity = document.getElementById("input-activity").value;
   var duration = document.getElementById("input-duration").value;
   var data = {
     registration: {
       consultantId,
       date,
-      project,
+      projectName,
       activity,
       duration
     }
@@ -111,6 +117,22 @@ function addRegistration() {
       if (json && json.error) {
         showError(json.error);
       }
+    });
+}
+
+function updateProjectSelect() {
+  var consultantId = document.getElementById("select-consultant").value;
+  httpGet("/api/project/for-consultant/" + consultantId)
+    .then(response => response.json())
+    .then(response => {
+      var projects = response.projects;
+      var projectsElement = document.getElementById("select-project");
+      projectsElement.innerHTML = projectsElement.getElementsByTagName(
+        "option"
+      )[0].outerHTML;
+      projects.forEach(project => {
+        projectsElement.innerHTML += `<option value="${project.name}">${project.name}</option>`;
+      });
     });
 }
 

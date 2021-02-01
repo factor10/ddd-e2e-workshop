@@ -1,8 +1,19 @@
 import { Router } from "express";
+import { ConsultantAgent } from "src/anti-corruption-layer";
 import { RegistrationController } from "src/api-controllers";
-import { FileBasedDayRepository } from "src/infrastructure";
+import {
+  FakeProjectRepository,
+  FileBasedDayRepository
+} from "src/infrastructure";
 
-const controller = new RegistrationController(new FileBasedDayRepository());
+const dayRepository = new FileBasedDayRepository();
+const consultantAgent = new ConsultantAgent();
+const projectRepository = new FakeProjectRepository();
+const controller = new RegistrationController(
+  dayRepository,
+  consultantAgent,
+  projectRepository
+);
 const router = Router();
 router.post("/", controller.addRegistration.bind(controller));
 

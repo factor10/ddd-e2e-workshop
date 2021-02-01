@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 context(
-  "Given the consultatnt Stina Johansson and a day with no registered time",
+  "Given the consultant Stina Johansson and a day with no registered time",
   () => {
     before(() => {
       cy.fixture("empty-storage").then(testData => {
@@ -14,7 +14,7 @@ context(
     describe("When registering 200 min spent on Programming @ New app", () => {
       before(() => {
         cy.get("[cy=input-date]").type("2021-01-25");
-        cy.get("[cy=input-project]").type("New app");
+        cy.get("[cy=select-project]").select("New app");
         cy.get("[cy=input-activity]").type("Programming");
         cy.get("[cy=input-duration]").type("200 min");
         cy.contains("button", "Add").click();

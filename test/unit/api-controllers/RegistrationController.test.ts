@@ -1,6 +1,8 @@
 import { getMockReq, getMockRes } from "@jest-mock/express";
 import { Guid } from "guid-typescript";
+import { ConsultantAgent } from "src/anti-corruption-layer";
 import { RegistrationController } from "src/api-controllers";
+import { FakeProjectRepository } from "src/infrastructure";
 import { FakeDayRepo } from "src/infrastructure-fake/FakeDayRepo";
 
 describe("Given a RegistrationController and an empty Day repository", () => {
@@ -8,7 +10,13 @@ describe("Given a RegistrationController and an empty Day repository", () => {
   let controller: RegistrationController;
   beforeEach(() => {
     fakeDaysRepo = new FakeDayRepo();
-    controller = new RegistrationController(fakeDaysRepo);
+    const consultantAgent = new ConsultantAgent();
+    const projectRepo = new FakeProjectRepository();
+    controller = new RegistrationController(
+      fakeDaysRepo,
+      consultantAgent,
+      projectRepo
+    );
   });
 
   let response: any;
@@ -21,7 +29,7 @@ describe("Given a RegistrationController and an empty Day repository", () => {
         registration: {
           consultantId: "11edb330-6b82-bc0a-a509-00340fd7125f",
           date: "1985-11-08",
-          project: "New app",
+          projectName: "New app",
           activity: "Programming",
           duration: "200 min"
         }
