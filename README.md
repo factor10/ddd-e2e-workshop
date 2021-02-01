@@ -75,3 +75,21 @@ npm run cypress:open
 ```
 
 Now you are very well prepared for the lab! Welcome!!! :)
+
+## About the folder structure
+
+```
+├─ src
+│  ├─ anti-corruption-layer  # Anti-corruption layer towards other subsystems
+│  ├─ api-controllers        # HTTP controllers to serve API
+│  ├─ domain-model           # Domain model and infrastructure interfaces
+│  ├─ env-config
+│  ├─ infrastructure         # Repositories
+│  ├─ infrastructure-fake    # Repositories for unit testing only
+│  ├─ public                 # Public static files for the web app
+│  ├─ routes                 # Routes for the API
+│  └─ shared
+└─ test
+   ├─ e2e                    # e2e (Cypress) tests
+   └─ unit                   # Unit tests
+```

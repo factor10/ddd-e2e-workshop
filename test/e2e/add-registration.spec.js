@@ -4,6 +4,7 @@ context(
   "Given the consultant Stina Johansson and a day with no registered time",
   () => {
     before(() => {
+      // Will get the fixture from `test/e2e/fixtures/empty-storage.json` and overwrite storage with it
       cy.fixture("empty-storage").then(testData => {
         cy.writeFile("src/infrastructure/_storage/e2e-storage.json", testData);
       });
