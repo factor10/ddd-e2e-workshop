@@ -4,9 +4,12 @@ import { ProjectController } from "src/api-controllers";
 import { FakeProjectRepository } from "src/infrastructure";
 
 const router = Router();
-const projectRepo = new FakeProjectRepository();
+const projectRepository = new FakeProjectRepository();
 const consultantAgent = new ConsultantAgent();
-const projectController = new ProjectController(projectRepo, consultantAgent);
+const projectController = new ProjectController(
+  projectRepository,
+  consultantAgent
+);
 router.get(
   "/for-consultant/:consultantId",
   projectController.getAllForConsultant.bind(projectController)

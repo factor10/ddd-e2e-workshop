@@ -6,9 +6,9 @@ import { FakeProjectRepository } from "src/infrastructure";
 describe("Given a consultant (Stina) with two projects", () => {
   let controller: ProjectController;
   beforeEach(() => {
-    const projectRepo = new FakeProjectRepository();
+    const projectRepository = new FakeProjectRepository();
     const consultantAgent = new ConsultantAgent();
-    controller = new ProjectController(projectRepo, consultantAgent);
+    controller = new ProjectController(projectRepository, consultantAgent);
   });
 
   let projects: any[];

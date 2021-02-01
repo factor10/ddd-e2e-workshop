@@ -2,21 +2,21 @@ import { getMockReq, getMockRes } from "@jest-mock/express";
 import { Guid } from "guid-typescript";
 import { DayController } from "src/api-controllers";
 import { Consultant, Day } from "src/domain-model";
-import { FakeDayRepo } from "src/infrastructure-fake/FakeDayRepo";
+import { FakeDayRepository } from "src/infrastructure-fake/FakeDayRepository";
 
 describe("Given a DayController", () => {
-  let fakeDaysRepo: FakeDayRepo;
+  let fakeDaysRepository: FakeDayRepository;
   let dayController: DayController;
   beforeEach(() => {
-    fakeDaysRepo = new FakeDayRepo();
-    dayController = new DayController(fakeDaysRepo);
+    fakeDaysRepository = new FakeDayRepository();
+    dayController = new DayController(fakeDaysRepository);
   });
 
   let response: any;
 
   describe("Given one day in repository", () => {
     beforeEach(() => {
-      fakeDaysRepo.save(
+      fakeDaysRepository.save(
         new Day(new Consultant(Guid.create(), "Kevin", "B"), new Date())
       );
     });

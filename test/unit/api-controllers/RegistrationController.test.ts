@@ -3,17 +3,17 @@ import { Guid } from "guid-typescript";
 import { ConsultantAgent } from "src/anti-corruption-layer";
 import { RegistrationController } from "src/api-controllers";
 import { FakeProjectRepository } from "src/infrastructure";
-import { FakeDayRepo } from "src/infrastructure-fake/FakeDayRepo";
+import { FakeDayRepository } from "src/infrastructure-fake/FakeDayRepository";
 
 describe("Given a RegistrationController and an empty Day repository", () => {
-  let fakeDaysRepo: FakeDayRepo;
+  let fakeDaysRepository: FakeDayRepository;
   let controller: RegistrationController;
   beforeEach(() => {
-    fakeDaysRepo = new FakeDayRepo();
+    fakeDaysRepository = new FakeDayRepository();
     const consultantAgent = new ConsultantAgent();
     const projectRepo = new FakeProjectRepository();
     controller = new RegistrationController(
-      fakeDaysRepo,
+      fakeDaysRepository,
       consultantAgent,
       projectRepo
     );
@@ -39,39 +39,39 @@ describe("Given a RegistrationController and an empty Day repository", () => {
     });
 
     test("Then repo has one new day", () => {
-      expect(fakeDaysRepo.days.length).toBe(1);
+      expect(fakeDaysRepository.days.length).toBe(1);
     });
 
     test("Then day in repository has the given consultant ID", () => {
-      expect(fakeDaysRepo.days[0].consultant.id).toEqual(
+      expect(fakeDaysRepository.days[0].consultant.id).toEqual(
         Guid.parse("11edb330-6b82-bc0a-a509-00340fd7125f")
       );
     });
 
     test("Then day in repository has the given date", () => {
-      expect(fakeDaysRepo.days[0].date.toISOString().substr(0, 10)).toEqual(
-        "1985-11-08"
-      );
+      expect(
+        fakeDaysRepository.days[0].date.toISOString().substr(0, 10)
+      ).toEqual("1985-11-08");
     });
 
     test("Then the day in repo has one registration", () => {
-      expect(fakeDaysRepo.days[0].registrations.length).toBe(1);
+      expect(fakeDaysRepository.days[0].registrations.length).toBe(1);
     });
 
     test("Then the registration should have duration 200 min", () => {
-      expect(fakeDaysRepo.days[0].registrations[0].duration.minutes).toEqual(
-        200
-      );
+      expect(
+        fakeDaysRepository.days[0].registrations[0].duration.minutes
+      ).toEqual(200);
     });
 
     test("Then the registration should be for project New app", () => {
       expect(
-        fakeDaysRepo.days[0].registrations[0].projectSnapshot.name
+        fakeDaysRepository.days[0].registrations[0].projectSnapshot.name
       ).toEqual("New app");
     });
 
     test("Then the registration should be for activity Programming", () => {
-      expect(fakeDaysRepo.days[0].registrations[0].activity).toEqual(
+      expect(fakeDaysRepository.days[0].registrations[0].activity).toEqual(
         "Programming"
       );
     });

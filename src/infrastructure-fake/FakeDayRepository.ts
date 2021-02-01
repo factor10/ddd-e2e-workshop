@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Consultant, Day, IDayRepository } from "src/domain-model";
 
-export class FakeDayRepo implements IDayRepository {
+export class FakeDayRepository implements IDayRepository {
   public days = new Array<Day>();
 
   save(day: Day): Promise<void> {
