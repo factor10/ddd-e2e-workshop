@@ -1,5 +1,12 @@
 {
   "baseUrl": "http://localhost:3001",
-  "ignoreTestFiles": "**/cypress/integration/examples/**",
-  "defaultCommandTimeout": 1000
+  "defaultCommandTimeout": 1000,
+  "integrationFolder": "test/e2e",
+  "testFiles": "**/*.spec.js",
+  "ignoreTestFiles": "**/test/e2e/examples/**",
+  "pluginsFile": "test/e2e/plugins/index.js",
+  "supportFile": "test/e2e/support/index.js",
+  "fixturesFolder": "test/e2e/fixtures",
+  "screenshotsFolder": "test/e2e/screenshots",
+  "videosFolder": "test/e2e/videos"
 }
