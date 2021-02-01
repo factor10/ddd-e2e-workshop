@@ -1,6 +1,6 @@
 import { Customer, Duration, Project, Registration } from "src/domain-model";
 
-describe("When_creating_a_registration", () => {
+describe("When creating a registration", () => {
   let registration: Registration;
 
   beforeEach(() => {
@@ -12,15 +12,15 @@ describe("When_creating_a_registration", () => {
     );
   });
 
-  test("Then_the_hours_is_set", () => {
+  test("Then the hours is set", () => {
     expect(registration.duration.hours).toBe(3);
   });
 
-  test("Then_the_activity_is_set", () => {
+  test("Then the activity is set", () => {
     expect(registration.activity).toBe("Programming");
   });
 
-  test("Then_the_project_is_set", () => {
+  test("Then the project is set", () => {
     expect(registration.projectSnapshot.name).toBe("X");
   });
 });
