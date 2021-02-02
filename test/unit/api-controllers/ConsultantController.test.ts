@@ -1,19 +1,27 @@
 import { getMockReq, getMockRes } from "@jest-mock/express";
-import { getAllConsultants } from "src/api-controllers";
+import { ConsultantAgent } from "src/anti-corruption-layer";
+import { ConsultantController } from "src/api-controllers";
 
-describe("When getting all consultants from controller", () => {
-  let response: any;
+describe("Given a ConsultantController", () => {
+  let controller: ConsultantController;
   beforeEach(() => {
-    response = getMockRes().res;
-    getAllConsultants(getMockReq(), response);
+    controller = new ConsultantController(new ConsultantAgent());
   });
 
-  test("Then HTTP status should be OK", () => {
-    expect(response.status).toHaveBeenCalledWith(200);
-  });
+  describe("When getting all consultants from controller", () => {
+    let response: any;
+    beforeEach(() => {
+      response = getMockRes().res;
+      controller.getAllConsultants(getMockReq(), response);
+    });
 
-  test("Then the response contains three consultants", () => {
-    const consultants = response.json.mock.calls[0][0].consultants;
-    expect(consultants.length).toBe(3);
+    test("Then HTTP status should be OK", () => {
+      expect(response.status).toHaveBeenCalledWith(200);
+    });
+
+    test("Then the response contains three consultants", () => {
+      const consultants = response.json.mock.calls[0][0].consultants;
+      expect(consultants.length).toBe(3);
+    });
   });
 });

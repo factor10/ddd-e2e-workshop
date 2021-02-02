@@ -5,8 +5,18 @@ import express, { NextFunction, Request, Response } from "express";
 import StatusCodes from "http-status-codes";
 import "express-async-errors";
 
-import BaseRouter from "./routes";
 import Logger from "jet-logger";
+import {
+  FakeProjectRepository,
+  FileBasedDayRepository
+} from "src/infrastructure";
+import { ConsultantAgent } from "src/anti-corruption-layer";
+import {
+  ConsultantController,
+  DayController,
+  ProjectController,
+  RegistrationController
+} from "src/api-controllers";
 
 const logger = new Logger();
 const app = express();
@@ -22,7 +32,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Add APIs
-app.use("/api", BaseRouter);
+
+const dayRepository = new FileBasedDayRepository();
+const consultantAgent = new ConsultantAgent();
+const projectRepository = new FakeProjectRepository();
+
+const daysCtrl = new DayController(dayRepository);
+const consultantCtrl = new ConsultantController(consultantAgent);
+
+const registrationCtrl = new RegistrationController(
+  dayRepository,
+  consultantAgent,
+  projectRepository
+);
+const projectCtrl = new ProjectController(projectRepository, consultantAgent);
+
+app.use("/api/days", daysCtrl.routes);
+app.use("/api/consultants", consultantCtrl.routes);
+app.use("/api/registration", registrationCtrl.routes);
+app.use("/api/project", projectCtrl.routes);
 
 // Print API errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

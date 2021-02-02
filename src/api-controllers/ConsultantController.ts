@@ -1,10 +1,18 @@
 import Status from "http-status-codes";
-import { Request, Response } from "express";
-import { ConsultantAgent } from "src/anti-corruption-layer";
+import { Request, Response, Router } from "express";
+import { IConsultantAgent } from "src/domain-model";
 
-const consultantAgent = new ConsultantAgent();
+export class ConsultantController {
+  constructor(private consultantAgent: IConsultantAgent) {}
 
-export const getAllConsultants = (_req: Request, res: Response) => {
-  const consultants = consultantAgent.all();
-  res.status(Status.OK).json({ consultants });
-};
+  public get routes() {
+    const router = Router();
+    router.get("/all", this.getAllConsultants.bind(this));
+    return router;
+  }
+
+  public getAllConsultants(_req: Request, res: Response) {
+    const consultants = this.consultantAgent.all();
+    res.status(Status.OK).json({ consultants });
+  }
+}

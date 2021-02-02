@@ -1,5 +1,5 @@
 import Status from "http-status-codes";
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { IConsultantAgent, IProjectRepository } from "src/domain-model";
 import { Guid } from "guid-typescript";
 
@@ -8,6 +8,15 @@ export class ProjectController {
     private projectRepository: IProjectRepository,
     private consultantAgent: IConsultantAgent
   ) {}
+
+  public get routes() {
+    const router = Router();
+    router.get(
+      "/for-consultant/:consultantId",
+      this.getAllForConsultant.bind(this)
+    );
+    return router;
+  }
 
   public async getAllForConsultant(req: Request, res: Response) {
     const consultantId = Guid.parse(req.params.consultantId);

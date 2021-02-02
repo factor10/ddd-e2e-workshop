@@ -1,5 +1,5 @@
 import Status from "http-status-codes";
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import {
   Consultant,
   Day,
@@ -29,6 +29,12 @@ export class RegistrationController {
     private consultantAgent: IConsultantAgent,
     private projectRepository: IProjectRepository
   ) {}
+
+  public get routes() {
+    const router = Router();
+    router.post("/", this.addRegistration.bind(this));
+    return router;
+  }
 
   public async addRegistration(req: IRegistrationRequest, res: Response) {
     const dto = req.body.registration;
