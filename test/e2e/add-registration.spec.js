@@ -3,7 +3,7 @@
 context("Given the consultant Stina and a day with no registered time", () => {
   before(() => {
     // Will get the fixture from `test/e2e/fixtures/empty-storage.json` and overwrite storage with it
-    cy.overwriteStorageWithFixture("empty-storage");
+    cy.task("db:empty");
     cy.visit("/");
     cy.getByCy("select-consultant").select("Stina Johansson");
   });

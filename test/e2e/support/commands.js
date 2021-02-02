@@ -24,15 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("overwriteStorageWithFixture", fixtureName => {
-  cy.fixture(fixtureName).then(fixtureContent => {
-    cy.writeFile(
-      "src/infrastructure/_storage/e2e-storage.json",
-      fixtureContent
-    );
-  });
-});
-
 Cypress.Commands.add("getByCy", cyAttibuteValue => {
   cy.get(`[cy=${cyAttibuteValue}]`);
 });
