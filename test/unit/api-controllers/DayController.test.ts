@@ -2,7 +2,7 @@ import { getMockReq, getMockRes } from "@jest-mock/express";
 import { Guid } from "guid-typescript";
 import { DayController } from "src/api-controllers";
 import { Consultant, Day } from "src/domain-model";
-import { FakeDayRepository } from "src/infrastructure-fake/FakeDayRepository";
+import { FakeDayRepository } from "../infrastructure-fake/FakeDayRepository";
 
 describe("Given a DayController", () => {
   let fakeDaysRepository: FakeDayRepository;

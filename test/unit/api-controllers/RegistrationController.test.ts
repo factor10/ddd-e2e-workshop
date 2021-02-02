@@ -3,7 +3,7 @@ import { Guid } from "guid-typescript";
 import { ConsultantAgent } from "src/anti-corruption-layer";
 import { RegistrationController } from "src/api-controllers";
 import { FakeProjectRepository } from "src/infrastructure";
-import { FakeDayRepository } from "src/infrastructure-fake/FakeDayRepository";
+import { FakeDayRepository } from "../infrastructure-fake/FakeDayRepository";
 
 describe("Given a RegistrationController and an empty Day repository", () => {
   let fakeDaysRepository: FakeDayRepository;
