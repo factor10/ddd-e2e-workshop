@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import moment from "moment";
 import { Consultant, Day, IDayRepository } from "src/domain-model";
 
 export class FakeDayRepository implements IDayRepository {
   public days = new Array<Day>();
 
-  save(day: Day): Promise<void> {
-    this.days.push(day);
-    return Promise.resolve();
+  async save(day: Day) {
+    const maybeDay = await this.certainDayForConsultant(
+      day.consultant,
+      day.date
+    );
+    if (maybeDay) {
+      this.days[this.days.indexOf(maybeDay)] = day;
+    } else {
+      this.days.push(day);
+    }
   }
 
   all(): Promise<Day[]> {
@@ -17,10 +25,18 @@ export class FakeDayRepository implements IDayRepository {
     consultant: Consultant,
     date: Date
   ): Promise<Day | null> {
-    throw new Error("Method not implemented.");
+    return Promise.resolve(
+      this.days.find(
+        day => day.consultant.equal(consultant) && day.isSameDate(date)
+      ) ?? null
+    );
   }
 
   between(start: Date, end: Date): Promise<Day[]> {
-    throw new Error("Method not implemented.");
+    return Promise.resolve(
+      this.days
+        .filter((d: Day) => moment(start).startOf("date").toDate() <= d.date)
+        .filter((d: Day) => d.date <= moment(end).endOf("date").toDate())
+    );
   }
 }

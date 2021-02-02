@@ -32,8 +32,7 @@ export class FileBasedDayRepository
     consultant: Consultant,
     date: Date
   ): Promise<Day | null> {
-    const db = await super.openDb();
-    for (const dayObject of db.days) {
+    for (const dayObject of await this.all()) {
       const day = Day.fromJsonObject(dayObject);
       if (consultant.equal(day.consultant) && day.isSameDate(date)) {
         return day;
