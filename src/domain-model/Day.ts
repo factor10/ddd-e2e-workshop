@@ -39,6 +39,14 @@ export class Day {
     return this._state;
   }
 
+  public isSameDate(other: Date) {
+    return (
+      this.date.getFullYear() === other.getFullYear() &&
+      this.date.getMonth() === other.getMonth() &&
+      this.date.getDate() === other.getDate()
+    );
+  }
+
   addRegistration(registration: Registration) {
     this._registrations.push(registration);
   }

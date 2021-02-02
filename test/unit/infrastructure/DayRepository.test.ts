@@ -10,7 +10,6 @@ import {
   Registration
 } from "src/domain-model";
 import { FileBasedDayRepository } from "src/infrastructure";
-import { isSameDate } from "src/shared/functions";
 
 describe("When saving days", () => {
   const dayRepository = new FileBasedDayRepository();
@@ -58,7 +57,7 @@ describe("When saving days", () => {
       fourDaysAhead
     );
     expect(day).not.toBeNull();
-    expect(isSameDate(<Date>day?.date, fourDaysAhead)).toBe(true);
+    expect((<Day>day)?.isSameDate(fourDaysAhead)).toBe(true);
     expect(day?.consultant).toEqual(consultantStina);
     expect(day?.registrations).toEqual([]);
     expect(day?.state).toBe(DayState.Open);
@@ -109,10 +108,8 @@ describe("When saving days", () => {
     const threeDaysAhead = new Date();
     threeDaysAhead.setDate(threeDaysAhead.getDate() + 3);
 
-    const resultDates = (
-      await dayRepository.between(twoDaysAgo, threeDaysAhead)
-    ).map(d => d.date);
+    const resultDates = await dayRepository.between(twoDaysAgo, threeDaysAhead);
     expect(resultDates.length).toBe(1);
-    expect(isSameDate(today, resultDates[0])).toBe(true);
+    expect(resultDates[0].isSameDate(today)).toBe(true);
   });
 });

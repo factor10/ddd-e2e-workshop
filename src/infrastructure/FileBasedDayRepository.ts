@@ -1,6 +1,5 @@
 import { BaseFileBasedRepository } from "./BaseFileBasedRepository";
 import { Consultant, Day, IDayRepository } from "src/domain-model";
-import { isSameDate } from "src/shared/functions";
 import moment from "moment";
 
 export class FileBasedDayRepository
@@ -17,7 +16,7 @@ export class FileBasedDayRepository
       const existingDay = Day.fromJsonObject(db.days[i]);
       if (
         day.consultant.equal(existingDay.consultant) &&
-        isSameDate(day.date, existingDay.date)
+        day.isSameDate(existingDay.date)
       ) {
         db.days[i] = dayAsJsonFriendly;
         await super.saveDb(db);
@@ -36,7 +35,7 @@ export class FileBasedDayRepository
     const db = await super.openDb();
     for (const dayObject of db.days) {
       const day = Day.fromJsonObject(dayObject);
-      if (consultant.equal(day.consultant) && isSameDate(day.date, date)) {
+      if (consultant.equal(day.consultant) && day.isSameDate(date)) {
         return day;
       }
     }

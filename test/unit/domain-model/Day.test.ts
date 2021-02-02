@@ -49,3 +49,31 @@ describe("When creating a day", () => {
     expect(day.state).toBe(DayState.Open);
   });
 });
+
+describe("Given a Day with date 2021-01-31", () => {
+  const theYear = "2021";
+  const theMonth = "01";
+  const theDay = "31";
+
+  let day: Day;
+  beforeEach(() => {
+    const id = Guid.create();
+    const consultant = new Consultant(id, "Pelle", "Svensson");
+    const theDate = new Date(`${theYear}-${theMonth}-${theDay}`);
+    day = new Day(consultant, theDate);
+  });
+
+  describe("When comparing dates", () => {
+    test.each([
+      [true, theYear, theMonth, theDay],
+      [false, "1234", theMonth, theDay],
+      [false, theYear, "12", theDay],
+      [false, theYear, theMonth, "23"]
+    ])(
+      "Then the result is %s for date %s-%s-%s",
+      (expected: boolean, y: string, m: string, d: string) => {
+        expect(day.isSameDate(new Date(`${y}-${m}-${d}`))).toBe(expected);
+      }
+    );
+  });
+});
