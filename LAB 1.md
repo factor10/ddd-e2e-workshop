@@ -7,7 +7,7 @@
 
 ## Steps
 
-1. Complete all the steps in README.md
+1. Complete all the steps in [README.md](README.md)
 
 2. In the Cypress Test Runner GUI, then run individual test files by clicking their name.
 
