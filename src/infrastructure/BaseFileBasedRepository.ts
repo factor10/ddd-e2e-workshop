@@ -1,13 +1,14 @@
 import path from "path";
 import jsonfile from "jsonfile";
 import { Day } from "src/domain-model";
-import logger from "src/shared/Logger";
+import Logger from "jet-logger";
 
 interface IDatabase {
   days: Day[];
 }
 
 export class BaseFileBasedRepository {
+  private logger = new Logger();
   private readonly dbFilePath = path.join(
     __dirname,
     `_storage`,
@@ -15,7 +16,7 @@ export class BaseFileBasedRepository {
   );
 
   constructor() {
-    logger.info(`Storing data in ${this.dbFilePath}`);
+    this.logger.info(`Storing data in ${this.dbFilePath}`);
     try {
       jsonfile.readFileSync(this.dbFilePath);
     } catch {

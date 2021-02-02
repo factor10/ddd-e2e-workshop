@@ -6,7 +6,9 @@
 import path from "path";
 import dotenv from "dotenv";
 import commandLineArgs from "command-line-args";
-import logger from "src/shared/Logger";
+import Logger from "jet-logger";
+
+const logger = new Logger();
 
 (() => {
   // Setup command line options
