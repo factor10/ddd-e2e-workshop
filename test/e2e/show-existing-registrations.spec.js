@@ -5,9 +5,7 @@ context(
   () => {
     before(() => {
       // Will get the fixture from `test/e2e/fixtures/one-registration.json` and overwrite storage with it
-      cy.fixture("one-registration").then(testData => {
-        cy.writeFile("src/infrastructure/_storage/e2e-storage.json", testData);
-      });
+      cy.overwriteStorageWithFixture("one-registration");
     });
 
     describe("When visiting site", () => {
