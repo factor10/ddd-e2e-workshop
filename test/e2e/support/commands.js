@@ -32,3 +32,7 @@ Cypress.Commands.add("overwriteStorageWithFixture", fixtureName => {
     );
   });
 });
+
+Cypress.Commands.add("getByCy", cyAttibuteValue => {
+  cy.get(`[cy=${cyAttibuteValue}]`);
+});
