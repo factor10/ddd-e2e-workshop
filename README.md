@@ -83,7 +83,7 @@ Now you are very well prepared for the lab! Welcome!!! :)
 │  ├─ anti-corruption-layer  # Anti-corruption layer towards other subsystems
 │  ├─ api-controllers        # HTTP controllers to serve API
 │  ├─ domain-model           # Domain model and infrastructure interfaces
-│  ├─ env-config
+│  ├─ env-config             # Config for each environment (development, test, e2e)
 │  ├─ infrastructure         # Repositories
 │  ├─ public                 # Public static files for the web app
 └─ test
