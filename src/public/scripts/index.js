@@ -97,15 +97,17 @@ function addRegistration() {
   var activity = document.getElementById("input-activity").value;
   var duration = document.getElementById("input-duration").value;
   var data = {
-    registration: {
+    day: {
       consultantId,
       date,
-      projectName,
-      activity,
-      duration
+      registration: {
+        projectName,
+        activity,
+        duration
+      }
     }
   };
-  httpPost("/api/registration", data)
+  httpPost("/api/days", data)
     .then(response => {
       if (response.status === 201) {
         displayRegistrations();
@@ -122,7 +124,7 @@ function addRegistration() {
 
 function updateProjectSelect() {
   var consultantId = document.getElementById("select-consultant").value;
-  httpGet("/api/project/for-consultant/" + consultantId)
+  httpGet("/api/projects/for-consultant/" + consultantId)
     .then(response => response.json())
     .then(response => {
       var projects = response.projects;

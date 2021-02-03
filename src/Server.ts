@@ -14,8 +14,7 @@ import { ConsultantAgent } from "src/anti-corruption-layer";
 import {
   ConsultantController,
   DayController,
-  ProjectController,
-  RegistrationController
+  ProjectController
 } from "src/api-controllers";
 
 const logger = new Logger();
@@ -37,20 +36,17 @@ const dayRepository = new FileBasedDayRepository();
 const consultantAgent = new ConsultantAgent();
 const projectRepository = new FakeProjectRepository();
 
-const daysCtrl = new DayController(dayRepository);
-const consultantCtrl = new ConsultantController(consultantAgent);
-
-const registrationCtrl = new RegistrationController(
+const daysCtrl = new DayController(
   dayRepository,
   consultantAgent,
   projectRepository
 );
+const consultantCtrl = new ConsultantController(consultantAgent);
 const projectCtrl = new ProjectController(projectRepository, consultantAgent);
 
 app.use("/api/days", daysCtrl.routes);
 app.use("/api/consultants", consultantCtrl.routes);
-app.use("/api/registration", registrationCtrl.routes);
-app.use("/api/project", projectCtrl.routes);
+app.use("/api/projects", projectCtrl.routes);
 
 // Print API errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
