@@ -64,7 +64,8 @@ export class Day {
       consultant: this.consultant.toJSON(),
       date: this.date,
       registrations: this._registrations.map(r => r.toJSON()),
-      state: this._state
+      state: this._state,
+      hours: this.hours
     };
   }
 
