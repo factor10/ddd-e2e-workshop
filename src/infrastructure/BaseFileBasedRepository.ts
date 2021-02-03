@@ -1,10 +1,9 @@
 import path from "path";
 import jsonfile from "jsonfile";
-import { Day } from "src/domain-model";
 import Logger from "jet-logger";
 
 interface IDatabase {
-  days: Day[];
+  days: Record<string, any>[];
 }
 
 export class BaseFileBasedRepository {
