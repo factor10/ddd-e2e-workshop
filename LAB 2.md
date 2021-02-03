@@ -9,9 +9,9 @@
 
 Write a new test given the following scenario:
 
-> _Given_ that consultant Stina has registered 60 min Programming on the New app for 2021-02-02
+> _Given_ that consultant Stina has registered 60 min Programming on New app for 2021-02-02
 >
-> _When_ Stina registers 30 min Meeting about the New app for 2021-02-02
+> _When_ Stina registers 30 min Meeting on New app for 2021-02-02
 >
 > _Then_ Stina has a total of registered time of 90 min for 2021-02-02
 
