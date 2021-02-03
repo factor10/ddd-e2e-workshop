@@ -85,7 +85,7 @@ Now you are very well prepared for the lab! Welcome!!! :)
 │  ├─ domain-model           # Domain model and infrastructure interfaces
 │  ├─ env-config             # Config for each environment (development, test, e2e)
 │  ├─ infrastructure         # Repositories
-│  ├─ public                 # Public static files for the web app
+│  └─ public                 # Public static files for the web app
 └─ test
    ├─ e2e                    # e2e (Cypress) tests
    └─ unit                   # Unit tests
