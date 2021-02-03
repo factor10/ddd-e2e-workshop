@@ -24,7 +24,7 @@ export class Duration {
     return new Duration(minutes);
   }
 
-  toJSON(): any {
+  toJSON(): Record<string, any> {
     return {
       minutes: this._minutes
     };

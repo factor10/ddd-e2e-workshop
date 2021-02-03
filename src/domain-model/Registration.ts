@@ -25,7 +25,7 @@ export class Registration {
     return this._projectSnapshot;
   }
 
-  toJSON(): any {
+  toJSON(): Record<string, any> {
     return {
       duration: this._duration.toJSON(),
       activity: this._activity,

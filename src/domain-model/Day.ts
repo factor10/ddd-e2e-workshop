@@ -59,7 +59,7 @@ export class Day {
     this._registrations.push(registration);
   }
 
-  toJSON(): any {
+  toJSON(): Record<string, any> {
     return {
       consultant: this.consultant.toJSON(),
       date: this.date,

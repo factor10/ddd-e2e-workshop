@@ -18,7 +18,7 @@ export class Person {
     return deepEqual(this, other);
   }
 
-  toJSON(): any {
+  toJSON(): Record<string, any> {
     return {
       firstName: this.firstName,
       lastName: this.lastName,

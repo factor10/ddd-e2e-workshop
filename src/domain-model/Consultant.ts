@@ -23,7 +23,7 @@ export class Consultant {
     return deepEqual(this, other);
   }
 
-  toJSON(): any {
+  toJSON(): Record<string, any> {
     return {
       id: this.id,
       person: this.person.toJSON()
