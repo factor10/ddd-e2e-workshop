@@ -62,16 +62,14 @@ describe("Given a DayController", () => {
           date: "1985-11-08"
         };
         req.body = {
-          day: {
-            registration: {
-              projectName: "New app",
-              activity: "Programming",
-              duration: "200 min"
-            }
+          registration: {
+            projectName: "New app",
+            activity: "Programming",
+            duration: "200 min"
           }
         };
 
-        await controller.addDay(req, response);
+        await controller.addRegistration(req, response);
       });
 
       test("Then repo has one new day", () => {

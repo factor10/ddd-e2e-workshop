@@ -105,10 +105,10 @@ Get all days in storage
 GET  /api/days
 ```
 
-Create a day for consultant with given date
+Add registration to day for consultant
 
 ```
-POST /api/days/{consultantId: Guid}/{date: yyyy-MM-dd}
+POST /api/days/{consultantId: Guid}/{date: yyyy-MM-dd}/registrations
 ```
 
 Get all consultants

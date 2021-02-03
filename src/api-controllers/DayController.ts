@@ -11,18 +11,16 @@ import {
 } from "src/domain-model";
 import { Guid } from "guid-typescript";
 
-interface ICreateDayRequest extends Request {
+interface IAddRegistrationRequest extends Request {
   body: {
     params: {
       consultantId: string;
       date: string;
     };
-    day: {
-      registration: {
-        projectName: string;
-        activity: string;
-        duration: string;
-      };
+    registration: {
+      projectName: string;
+      activity: string;
+      duration: string;
     };
   };
 }
@@ -36,7 +34,10 @@ export class DayController {
   public get routes() {
     const router = Router();
     router.get("/", this.getAllDays.bind(this));
-    router.post("/:consultantId/:date", this.addDay.bind(this));
+    router.post(
+      "/:consultantId/:date/registrations",
+      this.addRegistration.bind(this)
+    );
     return router;
   }
 
@@ -45,23 +46,16 @@ export class DayController {
     res.status(Status.OK).json({ days });
   }
 
-  public async addDay(req: ICreateDayRequest, res: Response) {
-    const dto = req.body.day;
+  public async addRegistration(req: IAddRegistrationRequest, res: Response) {
+    const dto = req.body.registration;
     if (!dto) {
       throw new Error("One or more of the required parameters was missing");
     }
 
     const consultant = this.getConsultant(Guid.parse(req.params.consultantId));
-    const project = await this.getProject(
-      consultant,
-      dto.registration.projectName
-    );
-    const duration = Duration.Create(dto.registration.duration);
-    const registration = new Registration(
-      duration,
-      dto.registration.activity,
-      project
-    );
+    const project = await this.getProject(consultant, dto.projectName);
+    const duration = Duration.Create(dto.duration);
+    const registration = new Registration(duration, dto.activity, project);
     const date = new Date(req.params.date);
 
     // TODO: Maybe check if day already exist and update that instead of creating a new Day?

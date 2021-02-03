@@ -97,15 +97,13 @@ function addRegistration() {
   var activity = document.getElementById("input-activity").value;
   var duration = document.getElementById("input-duration").value;
   var data = {
-    day: {
-      registration: {
-        projectName,
-        activity,
-        duration
-      }
+    registration: {
+      projectName,
+      activity,
+      duration
     }
   };
-  httpPost(`/api/days/${consultantId}/${date}`, data)
+  httpPost(`/api/days/${consultantId}/${date}/registrations`, data)
     .then(response => {
       if (response.status === 201) {
         displayRegistrations();
