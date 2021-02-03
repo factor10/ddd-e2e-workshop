@@ -24,7 +24,7 @@ Write a test, or update an existing) for the following scenario:
 >
 > _When_ listing all registrations
 >
-> _Then_ total duration should be shown as “3 h 20 min“
+> _Then_ total duration should be shown as 3 h 20 min
 
 You should now have a failing test because of the "incorrect" presentation of total duration. Now, make the test pass by changing production code.
 
@@ -38,9 +38,9 @@ Here's some BDD syntax to get you started:
 
 > _Given_ that consultant Stina exists and has no registrations for 2021-02-02
 >
-> _When_ Stina registers 200 min on 2021-02-02
+> _When_ Stina registers 200 min for 2021-02-02
 >
-> _Then_ Stinas total duration for 2021-02-02 should be shown as “3 h 20 min“
+> _Then_ Stinas total duration for 2021-02-02 should be shown as 3 h 20 min
 
 ## Task 3
 
