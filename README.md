@@ -90,3 +90,35 @@ Now you are very well prepared for the lab! Welcome!!! :)
    ├─ e2e                    # e2e (Cypress) tests
    └─ unit                   # Unit tests
 ```
+
+## About the HTTP API
+
+There are a couple of API endpoints implemented in the lab app. They are listed below and you can find example of their usage in `src/public/scripts/index.js`.
+
+The endpoints are defined in `src/Server.ts` and then routed to each controller.
+
+### Available endpoints
+
+Get all days in storage
+
+```
+GET  /api/days
+```
+
+Create a day for consultant with given date
+
+```
+POST /api/days/{consultantId: Guid}/{date: yyyy-MM-dd}
+```
+
+Get all consultants
+
+```
+GET  /api/consultants
+```
+
+Get projects for consultant
+
+```
+GET  /api/projects/for-consultant/{consultantId: Guid}
+```
