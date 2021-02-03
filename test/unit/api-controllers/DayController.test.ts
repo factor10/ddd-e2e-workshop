@@ -57,10 +57,12 @@ describe("Given a DayController", () => {
       beforeEach(async () => {
         const req = getMockReq();
         response = getMockRes().res;
+        req.params = {
+          consultantId: "11edb330-6b82-bc0a-a509-00340fd7125f",
+          date: "1985-11-08"
+        };
         req.body = {
           day: {
-            consultantId: "11edb330-6b82-bc0a-a509-00340fd7125f",
-            date: "1985-11-08",
             registration: {
               projectName: "New app",
               activity: "Programming",

@@ -13,9 +13,11 @@ import { Guid } from "guid-typescript";
 
 interface ICreateDayRequest extends Request {
   body: {
-    day: {
+    params: {
+      consultantId: string;
       date: string;
-      consultantId: Guid;
+    };
+    day: {
       registration: {
         projectName: string;
         activity: string;
@@ -33,8 +35,8 @@ export class DayController {
 
   public get routes() {
     const router = Router();
-    router.get("/all", this.getAllDays.bind(this));
-    router.post("/", this.addDay.bind(this));
+    router.get("/", this.getAllDays.bind(this));
+    router.post("/:consultantId/:date", this.addDay.bind(this));
     return router;
   }
 
@@ -49,7 +51,7 @@ export class DayController {
       throw new Error("One or more of the required parameters was missing");
     }
 
-    const consultant = this.getConsultant(dto.consultantId);
+    const consultant = this.getConsultant(Guid.parse(req.params.consultantId));
     const project = await this.getProject(
       consultant,
       dto.registration.projectName
@@ -60,7 +62,7 @@ export class DayController {
       dto.registration.activity,
       project
     );
-    const date = new Date(dto.date);
+    const date = new Date(req.params.date);
 
     // TODO: Maybe check if day already exist and update that instead of creating a new Day?
     const day = new Day(consultant, date);

@@ -7,7 +7,7 @@ export class ConsultantController {
 
   public get routes() {
     const router = Router();
-    router.get("/all", this.getAllConsultants.bind(this));
+    router.get("/", this.getAllConsultants.bind(this));
     return router;
   }
 

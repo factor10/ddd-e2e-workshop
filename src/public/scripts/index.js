@@ -6,7 +6,7 @@ function setCurrentDateInDatePicker() {
 
 getAllConsultantsAndAddToUi();
 function getAllConsultantsAndAddToUi() {
-  httpGet("/api/consultants/all")
+  httpGet("/api/consultants")
     .then(response => response.json())
     .then(response => {
       var consultants = response.consultants;
@@ -19,7 +19,7 @@ function getAllConsultantsAndAddToUi() {
 
 displayRegistrations();
 function displayRegistrations() {
-  httpGet("/api/days/all")
+  httpGet("/api/days")
     .then(response => response.json())
     .then(response => {
       var allDays = response.days;
@@ -98,8 +98,6 @@ function addRegistration() {
   var duration = document.getElementById("input-duration").value;
   var data = {
     day: {
-      consultantId,
-      date,
       registration: {
         projectName,
         activity,
@@ -107,7 +105,7 @@ function addRegistration() {
       }
     }
   };
-  httpPost("/api/days", data)
+  httpPost(`/api/days/${consultantId}/${date}`, data)
     .then(response => {
       if (response.status === 201) {
         displayRegistrations();
