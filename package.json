@@ -4,11 +4,11 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "serve": "nodemon",
-    "serve:e2e": "nodemon --env e2e || true",
+    "serve-e2e": "nodemon --env e2e || true",
     "test": "jest",
     "test:watch": "jest --watch",
-    "cypress:open": "start-server-and-test serve:e2e http://localhost:3001 'cypress open'",
-    "cypress": "start-server-and-test serve:e2e http://localhost:3001 'cypress run'"
+    "cypress:open": "start-server-and-test serve-e2e http://localhost:3001 'cypress open'",
+    "cypress": "start-server-and-test serve-e2e http://localhost:3001 'cypress run'"
   },
   "nodemonConfig": {
     "watch": [
