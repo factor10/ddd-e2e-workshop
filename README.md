@@ -120,5 +120,5 @@ GET  /api/consultants
 Get projects for consultant
 
 ```
-GET  /api/projects/for-consultant/{consultantId: Guid}
+GET  /api/consultants/{consultantId: Guid}/projects
 ```

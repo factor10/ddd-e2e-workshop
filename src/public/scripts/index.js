@@ -122,7 +122,7 @@ function addRegistration() {
 
 function updateProjectSelect() {
   var consultantId = document.getElementById("select-consultant").value;
-  httpGet("/api/projects/for-consultant/" + consultantId)
+  httpGet(`/api/consultants/${consultantId}/projects`)
     .then(response => response.json())
     .then(response => {
       var projects = response.projects;

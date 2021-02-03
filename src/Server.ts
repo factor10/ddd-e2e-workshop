@@ -11,11 +11,7 @@ import {
   FileBasedDayRepository
 } from "src/infrastructure";
 import { ConsultantAgent } from "src/anti-corruption-layer";
-import {
-  ConsultantController,
-  DayController,
-  ProjectController
-} from "src/api-controllers";
+import { ConsultantController, DayController } from "src/api-controllers";
 
 const logger = new Logger();
 const app = express();
@@ -41,12 +37,13 @@ const daysCtrl = new DayController(
   consultantAgent,
   projectRepository
 );
-const consultantCtrl = new ConsultantController(consultantAgent);
-const projectCtrl = new ProjectController(projectRepository, consultantAgent);
+const consultantCtrl = new ConsultantController(
+  consultantAgent,
+  projectRepository
+);
 
 app.use("/api/days", daysCtrl.routes);
 app.use("/api/consultants", consultantCtrl.routes);
-app.use("/api/projects", projectCtrl.routes);
 
 // Print API errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
