@@ -51,3 +51,9 @@ This time you on your own with the BDD syntax :)
 ## Task 4
 
 Implement the new scenario: Show total duration for all visible days.
+
+## Task 5
+
+Give Cucumber+Cypress a try!
+
+Try to convert one BDD text to a running test using Cucumber syntax and this framework https://github.com/TheBrainFamily/cypress-cucumber-preprocessor
