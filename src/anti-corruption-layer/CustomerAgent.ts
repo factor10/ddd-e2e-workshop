@@ -5,7 +5,7 @@ export class CustomerAgent implements ICustomerAgent {
 
   constructor() {
     this.createFakeCustomer("factor10");
-    this.createFakeCustomer("DDD Europe");
+    this.createFakeCustomer("Acme");
   }
 
   private createFakeCustomer(name: string) {
