@@ -1,6 +1,5 @@
 import { BaseFileBasedRepository } from "./BaseFileBasedRepository";
 import { Consultant, Day, IDayRepository } from "src/domain-model";
-import moment from "moment";
 
 export class FileBasedDayRepository
   extends BaseFileBasedRepository
@@ -45,8 +44,7 @@ export class FileBasedDayRepository
     const db = await super.openDb();
     return db.days
       .map(d => Day.fromJsonObject(d))
-      .filter((d: Day) => moment(start).startOf("date").toDate() <= d.date)
-      .filter((d: Day) => d.date <= moment(end).endOf("date").toDate());
+      .filter((d: Day) => d.isBetween(start, end));
   }
 
   async all(): Promise<Day[]> {

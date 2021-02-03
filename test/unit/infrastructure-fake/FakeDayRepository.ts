@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import moment from "moment";
 import { Consultant, Day, IDayRepository } from "src/domain-model";
 
 export class FakeDayRepository implements IDayRepository {
@@ -34,9 +32,7 @@ export class FakeDayRepository implements IDayRepository {
 
   between(start: Date, end: Date): Promise<Day[]> {
     return Promise.resolve(
-      this.days
-        .filter((d: Day) => moment(start).startOf("date").toDate() <= d.date)
-        .filter((d: Day) => d.date <= moment(end).endOf("date").toDate())
+      this.days.filter((d: Day) => d.isBetween(start, end))
     );
   }
 }

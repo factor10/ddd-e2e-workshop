@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Consultant, Registration } from ".";
 
 export enum DayState {
@@ -44,6 +45,13 @@ export class Day {
       this.date.getFullYear() === other.getFullYear() &&
       this.date.getMonth() === other.getMonth() &&
       this.date.getDate() === other.getDate()
+    );
+  }
+
+  public isBetween(start: Date, end: Date): boolean {
+    return (
+      moment(start).startOf("date").toDate() <= this.date &&
+      this.date <= moment(end).endOf("date").toDate()
     );
   }
 
