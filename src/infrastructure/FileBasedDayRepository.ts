@@ -18,13 +18,12 @@ export class FileBasedDayRepository
         day.isSameDate(existingDay.date)
       ) {
         db.days[i] = dayAsJsonFriendly;
-        await super.saveDb(db);
-        return;
+        return await super.saveDb(db);
       }
     }
 
     db.days.push(dayAsJsonFriendly);
-    await super.saveDb(db);
+    return await super.saveDb(db);
   }
 
   async certainDayForConsultant(
