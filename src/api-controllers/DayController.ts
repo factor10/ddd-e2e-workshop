@@ -58,8 +58,12 @@ export class DayController {
     const registration = new Registration(duration, dto.activity, project);
     const date = new Date(req.params.date);
 
-    // TODO: Maybe check if day already exist and update that instead of creating a new Day?
-    const day = new Day(consultant, date);
+    const maybeExistingDay = await this.dayRepository.certainDayForConsultant(
+      consultant,
+      date
+    );
+
+    const day = maybeExistingDay ?? new Day(consultant, date);
     day.addRegistration(registration);
     await this.dayRepository.save(day);
     res.status(Status.CREATED).end();
